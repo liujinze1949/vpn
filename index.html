@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass vpn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .vpn-button {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .vpn-button:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .vpn-button img {
+            width: 50%;
+            height: 50%;
+            filter: brightness(0) invert(1);
+        }
+
+        .warning {
+            color: #ff6b6b;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Glass VPN</h1>
+        <div class="vpn-button" onclick="showWarning()">
+            <!-- 请将YOUR_IMAGE_URL替换为您的图片链接 -->
+            <img src="https://i.imgs.ovh/2025/05/02/r6Pmn.png" alt="r6Pmn.png" border="0" />
+        </div>
+        <div class="warning" id="warningText">
+            我操死你个妈，你习爹允许你开了吗？再开杀你全家！<br>
+        </div>
+    </div>
+
+    <script>
+        function showWarning() {
+            const warning = document.getElementById('warningText');
+            const button = document.querySelector('.vpn-button');
+            
+            button.style.display = 'none';
+            warning.style.display = 'block';
+            
+            // 添加震动反馈（支持振动API的设备）
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
+            }
+        }
+    </script>
+</body>
+</html>
